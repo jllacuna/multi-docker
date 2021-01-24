@@ -1,0 +1,20 @@
+# Best practice is to lock in specific version
+FROM node:14.15.1-alpine3.10
+
+ENV NODE_PATH /data/node_modules
+ENV APP_PATH /data/app
+
+WORKDIR $APP_PATH
+
+# Cache node modules in /data/node_modules
+COPY package*.json /data/
+
+RUN cd /data && NODE_ENV=production npm install && npm cache clear --force
+
+COPY . .
+RUN rm -fr node_modules build /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+VOLUME $APP_PATH
+EXPOSE 3000
+
+CMD [ "npm", "run", "start" ]
