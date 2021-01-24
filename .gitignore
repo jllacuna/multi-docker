@@ -6,3 +6,4 @@ data/*
 
 .eslintcache
 *.swp
+.DS_Store
