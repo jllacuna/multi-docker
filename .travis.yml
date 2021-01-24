@@ -1,0 +1,25 @@
+language: generic
+
+services:
+  -  docker
+
+before_install:
+  - docker build -t chejll/client_test --file ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true chejll/client_test yarn test
+
+after_success:
+  # build production docker images
+  - docker build -t chejll/multi-nginx ./nginx
+  - docker build -t chejll/multi-client ./client
+  - docker build -t chejll/multi-server ./server
+  - docker build -t chejll/multi-worker ./worker
+  # log in to docker cli
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # push production docker images to docker hub
+  - docker push chejll/multi-nginx
+  - docker push chejll/multi-client
+  - docker push chejll/multi-server
+  - docker push chejll/multi-worker
+
