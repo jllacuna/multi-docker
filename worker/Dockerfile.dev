@@ -17,4 +17,4 @@ RUN rm -fr node_modules build /var/lib/apt/lists/* /tmp/* /var/tmp/*
 VOLUME $APP_PATH
 EXPOSE 3000
 
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "run", "start" ]
