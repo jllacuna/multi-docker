@@ -9,29 +9,29 @@ before_install:
 script:
   - docker run -e CI=true chejll/client_test yarn test
 
-after_success:
-  # build production docker images
-  - docker build -t chejll/multi-nginx ./nginx
-  - docker build -t chejll/multi-client ./client
-  - docker build -t chejll/multi-server ./server
-  - docker build -t chejll/multi-worker ./worker
-  # log in to docker cli
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  # push production docker images to docker hub
-  - docker push chejll/multi-nginx
-  - docker push chejll/multi-client
-  - docker push chejll/multi-server
-  - docker push chejll/multi-worker
+# after_success:
+#   # build production docker images
+#   - docker build -t chejll/multi-nginx ./nginx
+#   - docker build -t chejll/multi-client ./client
+#   - docker build -t chejll/multi-server ./server
+#   - docker build -t chejll/multi-worker ./worker
+#   # log in to docker cli
+#   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+#   # push production docker images to docker hub
+#   - docker push chejll/multi-nginx
+#   - docker push chejll/multi-client
+#   - docker push chejll/multi-server
+#   - docker push chejll/multi-worker
 
-deploy:
-  provider: elasticbeanstalk
-  region: "us-west-1"
-  app: "multi-docker"
-  env: "MultiDocker-env"
-  bucket_name: "elasticbeanstalk-us-west-1-908784734212"
-  bucket_path: "multi-docker"
-  on:
-    branch: main
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
-
+# deploy:
+#   provider: elasticbeanstalk
+#   region: "us-west-1"
+#   app: "multi-docker"
+#   env: "MultiDocker-env"
+#   bucket_name: "elasticbeanstalk-us-west-1-908784734212"
+#   bucket_path: "multi-docker"
+#   on:
+#     branch: main
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key: $AWS_SECRET_KEY
+#
