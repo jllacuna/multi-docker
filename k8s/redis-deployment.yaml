@@ -15,7 +15,7 @@ spec:
       volumes:
         - name: redis-storage
           persistentVolumeClaim:
-            claimName: database-persistent-volume-claim
+            claimName: redis-persistent-volume-claim
       containers:
         - name: redis
           image: redis:6
