@@ -9,7 +9,7 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          <h1>Fibonacci Calculator</h1>
+          <h1>Fibonacci Calculator on Kubernetes</h1>
           <img src={logo} className="App-logo" alt="logo" />
           <div>
             <Route exact path="/" component={Fib} />
