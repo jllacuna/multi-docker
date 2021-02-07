@@ -11,10 +11,3 @@ spec:
   dnsNames:
     - tenthirteen.dev
     - www.tenthirteen.dev
-  # acme:
-  #   config:
-  #     - http01:
-  #         ingressClass: nginx
-  #       domains:
-  #         - tenthirteen.dev
-  #         - www.tenthirteen.dev
