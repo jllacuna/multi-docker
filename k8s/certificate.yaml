@@ -1,9 +1,9 @@
-apiVersion: cert-manager.io/v1alpha2
+apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: tenthirteen-dev-tls
+  name: tenthirteen-dev
 spec:
-  secretName: tenthirteen-dev
+  secretName: tenthirteen-dev-tls
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer

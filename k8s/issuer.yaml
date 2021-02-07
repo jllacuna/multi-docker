@@ -1,4 +1,4 @@
-apiVersion: cert-manager.io/v1alpha2
+apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: letsencrypt-prod
@@ -6,6 +6,7 @@ spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
     email: 'no.reply@tenthirteen.dev'
+    preferredChain: 'ISRG Root X1'
     privateKeySecretRef:
       name: letsencrypt-prod
     solvers:
